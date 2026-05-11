@@ -10,7 +10,7 @@ export default function VsIcon() {
         <span className="vs-text">VS</span>
       ) : (
         <img
-          src="/assets/vs-logo.png"
+          src={`${import.meta.env.BASE_URL}assets/vs-logo.png`}
           alt="VS"
           className="vs-img"
           onError={() => setImgError(true)}

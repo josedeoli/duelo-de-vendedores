@@ -51,7 +51,7 @@ export default function ArenaLayout() {
       {/* Camada 0 — vídeo de fundo */}
       <video
         className="arena-video"
-        src="/assets/videos/stage-background.mp4"
+        src={`${import.meta.env.BASE_URL}assets/videos/stage-background.mp4`}
         autoPlay loop muted playsInline
       />
 
@@ -93,7 +93,7 @@ export default function ArenaLayout() {
             <div className="char-selector">
               <button className="btn-arcade btn-nav" onClick={() => nextChar(setP1, p1.idx, -1)}>◄</button>
               <img
-                src={`/assets/Vendedores/${PERSONAGENS[p1.idx].avatar_id}.png`}
+                src={`${import.meta.env.BASE_URL}assets/Vendedores/${PERSONAGENS[p1.idx].avatar_id}.png`}
                 className="char-thumb"
                 alt={PERSONAGENS[p1.idx].nome}
               />
@@ -114,7 +114,7 @@ export default function ArenaLayout() {
             <div className="char-selector">
               <button className="btn-arcade btn-nav" onClick={() => nextChar(setP2, p2.idx, -1)}>◄</button>
               <img
-                src={`/assets/Vendedores/${PERSONAGENS[p2.idx].avatar_id}.png`}
+                src={`${import.meta.env.BASE_URL}assets/Vendedores/${PERSONAGENS[p2.idx].avatar_id}.png`}
                 className="char-thumb"
                 alt={PERSONAGENS[p2.idx].nome}
               />

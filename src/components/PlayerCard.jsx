@@ -11,7 +11,8 @@ const FACING = {
 
 export default function PlayerCard({ player, side }) {
   const [imgError, setImgError] = useState(false)
-  const src = imgError ? '/assets/Vendedores/default.png' : `/assets/Vendedores/${player.avatar_id}.png`
+  const base = import.meta.env.BASE_URL
+  const src = imgError ? `${base}assets/Vendedores/default.png` : `${base}assets/Vendedores/${player.avatar_id}.png`
 
   const naturalDir = FACING[player.avatar_id] || 'right'
   const needsFlip = (side === 'left' && naturalDir === 'left') ||
