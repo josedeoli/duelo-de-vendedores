@@ -1,0 +1,17 @@
+.hp-bar {
+  display: flex;
+  gap: 4px;
+  width: 100%;
+  height: 38px;
+}
+
+.hp-bar--reversed {
+  flex-direction: row-reverse;
+}
+
+.hp-segment {
+  flex: 1;
+  border: 2px solid #000;
+  border-radius: 2px;
+  background: #2a2a2a;
+}

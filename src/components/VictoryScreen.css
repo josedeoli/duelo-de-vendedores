@@ -1,0 +1,64 @@
+.victory-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.72);
+}
+
+.screen-flash {
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  pointer-events: none;
+}
+
+.ko-text {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(5rem, 14vw, 11rem);
+  color: #FFD700;
+  text-shadow: 6px 6px 0 #FF2020, 12px 12px 0 #000;
+  line-height: 1;
+  margin: 0;
+}
+
+.winner-name {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(1.5rem, 4vw, 3.5rem);
+  color: #F0F0F0;
+  text-shadow: 3px 3px 0 #000;
+  margin: 32px 0 0;
+}
+
+.you-win-text {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(1rem, 3vw, 2.5rem);
+  color: #00FF41;
+  text-shadow: 0 0 16px #00FF41, 0 0 40px #00FF41;
+  margin: 16px 0 0;
+}
+
+.btn-novo-duelo-victory {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(0.6rem, 1.2vw, 0.9rem);
+  color: #000;
+  background: #FFD700;
+  border: none;
+  padding: 16px 32px;
+  cursor: pointer;
+  border-radius: 4px;
+  letter-spacing: 2px;
+  margin-top: 40px;
+  box-shadow: 0 6px 0 #aa8800, 0 0 30px #FFD700;
+  transition: transform 0.08s, box-shadow 0.08s;
+}
+.btn-novo-duelo-victory:hover {
+  box-shadow: 0 6px 0 #aa8800, 0 0 50px #FFD700;
+}
+.btn-novo-duelo-victory:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 #aa8800;
+}

@@ -1,0 +1,281 @@
+/* ── Wrapper principal ── */
+.arena {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #000;
+}
+
+/* ── Fundo fallback: Duelo 1 (sem vídeo) ── */
+.arena--bg-default {
+  background: radial-gradient(ellipse at center, #1a1a2e 0%, #0a0a0d 100%);
+}
+
+/* ── Fundo fallback: Duelo 2 — grade neon animada ── */
+.arena--bg-neon {
+  background: radial-gradient(ellipse at center, #12003a 0%, #04000f 100%);
+}
+
+.arena--bg-neon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(160, 0, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(160, 0, 255, 0.07) 1px, transparent 1px);
+  background-size: 64px 64px;
+  animation: neon-grid 7s linear infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.arena--bg-neon::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 100%, rgba(160, 0, 255, 0.18) 0%, transparent 65%);
+  z-index: 0;
+  pointer-events: none;
+  animation: neon-pulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes neon-grid {
+  from { background-position: 0 0; }
+  to   { background-position: 0 64px; }
+}
+
+@keyframes neon-pulse {
+  from { opacity: 0.6; }
+  to   { opacity: 1; }
+}
+
+/* ── Estados de carregamento ── */
+.arena--loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.loading-text {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  color: #FFD700;
+  animation: blink 1s step-end infinite;
+  margin: 0;
+}
+
+.loading-hint {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.6rem;
+  color: #64748b;
+  margin: 0;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ── Vídeo de fundo ── */
+.arena-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  filter: brightness(0.75);
+  z-index: 0;
+}
+
+/* ── Camada de conteúdo ── */
+.arena-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Título principal ── */
+.arena-titulo {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(1.6rem, 3.2vw, 3rem);
+  color: #FFD700;
+  text-align: center;
+  text-shadow:
+    -2px -2px 0 #000,
+     2px -2px 0 #000,
+    -2px  2px 0 #000,
+     2px  2px 0 #000,
+     4px  4px 0 #FF2020,
+     8px  8px 0 #000;
+  letter-spacing: 6px;
+  padding: 24px 40px 16px;
+  background: rgba(0, 0, 0, 0.55);
+  border-bottom: 3px solid #FFD700;
+}
+
+/* ── HUD ── */
+.arena-hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 40px 0;
+  gap: 20px;
+}
+
+.hud-player {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+
+.hud-player--left {
+  align-items: flex-start;
+}
+
+.hud-player--right {
+  align-items: flex-end;
+}
+
+.hud-name {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(1.1rem, 2.2vw, 2rem);
+  color: #F0F0F0;
+  text-shadow: 3px 3px 0 #000, -1px -1px 0 #000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.hud-score {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(0.55rem, 1vw, 0.8rem);
+  color: #FFD700;
+  text-shadow: 1px 1px 0 #000;
+}
+
+.hud-label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(0.65rem, 1.1vw, 0.9rem);
+  color: #F0F0F0;
+  text-shadow: 2px 2px 0 #000, -1px -1px 0 #000;
+  letter-spacing: 2px;
+}
+
+/* ── Stage (personagens) ── */
+.arena-stage {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 220px;
+  padding: 0 48px 16px;
+}
+
+/* ── Painel de controle (bottom bar) ── */
+.arena-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 40px 18px;
+  background: rgba(0, 0, 0, 0.82);
+  border-top: 2px solid #FFD700;
+  gap: 16px;
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.char-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.char-thumb {
+  width: 56px;
+  height: 72px;
+  object-fit: contain;
+  object-position: top;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 0 6px #FFD70080);
+}
+
+.sale-buttons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.btn-arcade {
+  font-family: 'Press Start 2P', monospace;
+  border: none;
+  cursor: pointer;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  font-size: 1.6rem;
+  line-height: 1;
+  position: relative;
+  transition: transform 0.08s, box-shadow 0.08s;
+}
+.btn-arcade:active { transform: translateY(4px); }
+
+.btn-add {
+  background: #00c853;
+  color: #000;
+  box-shadow: 0 6px 0 #006622, 0 0 16px #00FF4150;
+}
+.btn-add:hover { box-shadow: 0 6px 0 #006622, 0 0 28px #00FF41; }
+.btn-add:active { box-shadow: 0 2px 0 #006622; }
+
+.btn-sub {
+  background: #FF2020;
+  color: #fff;
+  box-shadow: 0 6px 0 #880000, 0 0 16px #FF202050;
+}
+.btn-sub:hover { box-shadow: 0 6px 0 #880000, 0 0 28px #FF2020; }
+.btn-sub:active { box-shadow: 0 2px 0 #880000; }
+
+.btn-nav {
+  background: #222;
+  color: #FFD700;
+  font-size: 1rem;
+  box-shadow: 0 4px 0 #111;
+}
+.btn-nav:hover { background: #333; }
+.btn-nav:active { box-shadow: 0 1px 0 #111; }
+
+.controls-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-novo-duelo {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.6rem;
+  color: #000;
+  background: #FFD700;
+  border: none;
+  padding: 14px 22px;
+  cursor: pointer;
+  border-radius: 4px;
+  letter-spacing: 2px;
+  box-shadow: 0 5px 0 #aa8800, 0 0 20px #FFD70060;
+  transition: transform 0.08s, box-shadow 0.08s;
+}
+.btn-novo-duelo:hover { box-shadow: 0 5px 0 #aa8800, 0 0 32px #FFD700; }
+.btn-novo-duelo:active { transform: translateY(3px); box-shadow: 0 2px 0 #aa8800; }
