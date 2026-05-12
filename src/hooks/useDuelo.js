@@ -4,6 +4,7 @@ import { supabase } from '../lib/supabase'
 export function useDuelo(dueloId) {
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     supabase
@@ -11,8 +12,9 @@ export function useDuelo(dueloId) {
       .select('*')
       .eq('duelo_id', dueloId)
       .single()
-      .then(({ data }) => {
-        if (data) setData(data)
+      .then(({ data, error }) => {
+        if (error) setError(error.message)
+        else if (data) setData(data)
         setLoading(false)
       })
 
@@ -28,5 +30,5 @@ export function useDuelo(dueloId) {
     return () => supabase.removeChannel(channel)
   }, [dueloId])
 
-  return { data, loading }
+  return { data, loading, error }
 }

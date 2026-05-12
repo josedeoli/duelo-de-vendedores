@@ -15,14 +15,29 @@ const PERSONAGENS = [
 const META = 10
 
 export default function ArenaLayout({ dueloId = '1' }) {
-  const { data, loading } = useDuelo(dueloId)
+  const { data, loading, error } = useDuelo(dueloId)
 
-  if (loading || !data) {
+  if (loading) {
     return (
       <div className="arena">
         <div className="arena-content" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <span style={{ fontFamily: "'Press Start 2P'", color: '#FFD700', fontSize: '1.5rem' }}>
             CARREGANDO...
+          </span>
+        </div>
+      </div>
+    )
+  }
+
+  if (error || !data) {
+    return (
+      <div className="arena">
+        <div className="arena-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1rem' }}>
+          <span style={{ fontFamily: "'Press Start 2P'", color: '#FF2020', fontSize: '1rem' }}>
+            ERRO DE CONEXÃO
+          </span>
+          <span style={{ fontFamily: 'monospace', color: '#f0f0f0', fontSize: '0.75rem', textAlign: 'center', maxWidth: '600px' }}>
+            {error || 'Dados não encontrados'}
           </span>
         </div>
       </div>
