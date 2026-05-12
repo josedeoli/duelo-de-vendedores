@@ -47,15 +47,17 @@ export default function VictoryScreen({ winner, onReset }) {
             YOU WIN!
           </motion.p>
 
-          <motion.button
-            className="btn-novo-duelo-victory"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.2, duration: 0.5 }}
-            onClick={onReset}
-          >
-            NOVO DUELO
-          </motion.button>
+          {onReset && (
+            <motion.button
+              className="btn-novo-duelo-victory"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 2.2, duration: 0.5 }}
+              onClick={onReset}
+            >
+              NOVO DUELO
+            </motion.button>
+          )}
         </motion.div>
       )}
     </AnimatePresence>

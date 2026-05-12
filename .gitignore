@@ -1,3 +1,7 @@
+# Variáveis de ambiente
+.env
+.env.local
+
 # Arquivos operacionais
 vendas.xlsx
 public/duelo_config.json

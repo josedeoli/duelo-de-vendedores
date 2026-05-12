@@ -1,0 +1,130 @@
+.admin-page {
+  min-height: 100vh;
+  background: #0a0a0a;
+  color: #f0f0f0;
+  font-family: 'Press Start 2P', monospace;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.admin-header {
+  text-align: center;
+  color: #FFD700;
+  font-size: 1rem;
+  padding: 1rem 0;
+  border-bottom: 2px solid #FFD700;
+  margin-bottom: 1.5rem;
+}
+
+.admin-card {
+  background: #1a1a1a;
+  border: 2px solid #3a3a3a;
+  border-radius: 4px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.admin-card-title {
+  color: #FFD700;
+  font-size: 0.65rem;
+  margin-bottom: 1.25rem;
+  text-align: center;
+}
+
+.admin-players {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.admin-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.admin-vs {
+  font-size: 1.2rem;
+  color: #FF2020;
+  flex-shrink: 0;
+  padding: 0 0.5rem;
+}
+
+.admin-char-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.admin-char-img {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border: 2px solid #3a3a3a;
+}
+
+.admin-player-name {
+  font-size: 0.45rem;
+  color: #f0f0f0;
+  text-align: center;
+}
+
+.admin-player-score {
+  font-size: 2rem;
+  color: #FFD700;
+  line-height: 1;
+}
+
+.admin-sale-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.admin-btn {
+  font-family: 'Press Start 2P', monospace;
+  border: none;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.admin-btn-add {
+  background: #00FF41;
+  color: #0a0a0a;
+  font-size: 1.5rem;
+  width: 52px;
+  height: 52px;
+}
+
+.admin-btn-sub {
+  background: #FF2020;
+  color: #fff;
+  font-size: 1.5rem;
+  width: 52px;
+  height: 52px;
+}
+
+.admin-btn-nav {
+  background: #3a3a3a;
+  color: #f0f0f0;
+  font-size: 0.6rem;
+  padding: 0.4rem 0.5rem;
+}
+
+.admin-btn-reset {
+  width: 100%;
+  background: #222;
+  color: #FF8C00;
+  border: 2px solid #FF8C00;
+  font-size: 0.55rem;
+  padding: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.admin-btn-reset:active {
+  background: #FF8C00;
+  color: #0a0a0a;
+}
