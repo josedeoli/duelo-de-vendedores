@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import HpBar from './HpBar'
 
 import PlayerCard from './PlayerCard'
@@ -16,8 +16,21 @@ const PERSONAGENS = [
 const META = 10
 
 export default function ArenaLayout() {
-  const [p1, setP1] = useState({ idx: 0, vendas: 0 })
-  const [p2, setP2] = useState({ idx: 1, vendas: 0 })
+  const [p1, setP1] = useState(() => {
+    try {
+      const saved = localStorage.getItem('duelo_p1')
+      return saved ? JSON.parse(saved) : { idx: 0, vendas: 0 }
+    } catch { return { idx: 0, vendas: 0 } }
+  })
+  const [p2, setP2] = useState(() => {
+    try {
+      const saved = localStorage.getItem('duelo_p2')
+      return saved ? JSON.parse(saved) : { idx: 1, vendas: 0 }
+    } catch { return { idx: 1, vendas: 0 } }
+  })
+
+  useEffect(() => { localStorage.setItem('duelo_p1', JSON.stringify(p1)) }, [p1])
+  useEffect(() => { localStorage.setItem('duelo_p2', JSON.stringify(p2)) }, [p2])
 
   const jogador1 = { ...PERSONAGENS[p1.idx], vendas: p1.vendas }
   const jogador2 = { ...PERSONAGENS[p2.idx], vendas: p2.vendas }
@@ -43,6 +56,8 @@ export default function ArenaLayout() {
   function reset() {
     setP1(prev => ({ ...prev, vendas: 0 }))
     setP2(prev => ({ ...prev, vendas: 0 }))
+    localStorage.removeItem('duelo_p1')
+    localStorage.removeItem('duelo_p2')
   }
 
   return (
