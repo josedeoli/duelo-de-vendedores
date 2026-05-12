@@ -15,22 +15,25 @@ const PERSONAGENS = [
 
 const META = 10
 
-export default function ArenaLayout() {
+export default function ArenaLayout({ dueloId = '1' }) {
+  const keyP1 = `duelo${dueloId}_p1`
+  const keyP2 = `duelo${dueloId}_p2`
+
   const [p1, setP1] = useState(() => {
     try {
-      const saved = localStorage.getItem('duelo_p1')
+      const saved = localStorage.getItem(keyP1)
       return saved ? JSON.parse(saved) : { idx: 0, vendas: 0 }
     } catch { return { idx: 0, vendas: 0 } }
   })
   const [p2, setP2] = useState(() => {
     try {
-      const saved = localStorage.getItem('duelo_p2')
+      const saved = localStorage.getItem(keyP2)
       return saved ? JSON.parse(saved) : { idx: 1, vendas: 0 }
     } catch { return { idx: 1, vendas: 0 } }
   })
 
-  useEffect(() => { localStorage.setItem('duelo_p1', JSON.stringify(p1)) }, [p1])
-  useEffect(() => { localStorage.setItem('duelo_p2', JSON.stringify(p2)) }, [p2])
+  useEffect(() => { localStorage.setItem(keyP1, JSON.stringify(p1)) }, [p1])
+  useEffect(() => { localStorage.setItem(keyP2, JSON.stringify(p2)) }, [p2])
 
   const jogador1 = { ...PERSONAGENS[p1.idx], vendas: p1.vendas }
   const jogador2 = { ...PERSONAGENS[p2.idx], vendas: p2.vendas }
@@ -56,8 +59,8 @@ export default function ArenaLayout() {
   function reset() {
     setP1(prev => ({ ...prev, vendas: 0 }))
     setP2(prev => ({ ...prev, vendas: 0 }))
-    localStorage.removeItem('duelo_p1')
-    localStorage.removeItem('duelo_p2')
+    localStorage.removeItem(keyP1)
+    localStorage.removeItem(keyP2)
   }
 
   return (
@@ -73,7 +76,7 @@ export default function ArenaLayout() {
       {/* Camada 1 — conteúdo */}
       <div className="arena-content">
 
-        <div className="arena-titulo">DUELO 1 DA SEMANA</div>
+        <div className="arena-titulo">DUELO {dueloId} DA SEMANA</div>
 
         {/* HUD */}
         <div className="arena-hud">
