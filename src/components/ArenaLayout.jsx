@@ -69,7 +69,7 @@ export default function ArenaLayout({ dueloId = '1' }) {
       {/* Camada 0 — vídeo de fundo */}
       <video
         className="arena-video"
-        src={`${import.meta.env.BASE_URL}assets/videos/stage-background.mp4`}
+        src={`${import.meta.env.BASE_URL}assets/videos/stage-background${dueloId === '1' ? '' : '.' + dueloId}.mp4`}
         autoPlay loop muted playsInline
       />
 
