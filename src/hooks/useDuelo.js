@@ -11,10 +11,11 @@ export function useDuelo(dueloId) {
       .from('duelos')
       .select('*')
       .eq('duelo_id', dueloId)
-      .single()
+      .limit(1)
       .then(({ data, error }) => {
         if (error) setError(error.message)
-        else if (data) setData(data)
+        else if (data && data.length > 0) setData(data[0])
+        else setError('Linha não encontrada. Insira os dados no Supabase.')
         setLoading(false)
       })
 
